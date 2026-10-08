@@ -1,0 +1,6 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import { PageIntro, Process, ContactCTA, s } from '@/components/Site';
+import { company } from '@/data/site';
+export const metadata: Metadata = { title: '회사소개', description: '디자인부터 양산까지 연결하는 제이앤비컴퍼니의 소개와 일하는 방식입니다.' };
+export default function About() { return <><PageIntro eyebrow="ABOUT JNB" title="제품의 가능성을 연결합니다." text={company.intro}/><section className={`${s.section} ${s.aboutGrid}`}><div className={s.brandPanel}><Image src={company.logo} width={480} height={349} alt="J&B COMPANY 브랜드 로고"/><p>CONNECTING POSSIBILITIES</p></div><div><p className={s.eyebrow}>OUR COMPANY</p><h2>좋은 제품을 위한<br/>함께하는 파트너.</h2><p className={s.lead}>{company.description}</p><p>아이디어를 구체화하는 일, 제품에 맞는 부품을 찾는 일, 생산과 공급을 준비하는 일. 프로젝트의 현재 단계를 이해하고 필요한 업무부터 협의합니다.</p><dl className={s.infoList}><div><dt>회사명</dt><dd>{company.name}</dd></div><div><dt>사업영역</dt><dd>디자인·개발 / 부품 소싱·공급 / OEM·ODM 양산</dd></div><div><dt>회사 정보</dt><dd>상세 기본정보와 연혁은 현재 기준으로 확인 중입니다.</dd></div></dl></div></section><section className={s.processSection}><div className={s.container}><p className={s.eyebrow}>OUR APPROACH</p><h2>제품을 이해하는 것에서 시작합니다.</h2><Process/><div className={s.experience}><h3>대표자 경험에 관하여</h3><p>제품 개발과 생산 관련 경험은 수행 시기와 역할, 공개 가능한 범위를 확인한 뒤 소개할 예정입니다. 대표자의 이전 경험을 JNB 회사의 실적으로 표시하지 않습니다.</p></div></div></section><ContactCTA/></>; }

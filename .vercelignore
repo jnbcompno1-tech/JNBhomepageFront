@@ -1,0 +1,12 @@
+.git
+.team-review
+analysis
+graphify-out
+docs
+tests
+output
+debug.log
+README.md
+*.tsbuildinfo
+.env*
+eslint.config.mjs
