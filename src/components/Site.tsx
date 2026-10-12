@@ -8,7 +8,7 @@ export function ContactCTA() { return <section className={s.cta}><div><p classNa
 export function Services({ detailed = false }: { detailed?: boolean }) {
   return <div className={detailed ? s.serviceDetails : s.cards}>
     {services.map((service, i) => <article id={service.id} key={service.id} className={detailed ? s.serviceDetail : s.serviceCard}>
-      <div className={s.cardArt} aria-hidden="true"><span className={s.artShape}/><span className={s.artShape}/><span className={s.artShape}/><b>0{i + 1}</b></div>
+      <div className={s.cardArt}><Image src={service.image} alt="" fill sizes="(max-width: 600px) 100vw, 400px"/><b aria-hidden="true">0{i + 1}</b></div>
       <div className={s.serviceBody}>
         <p className={s.eyebrow}>{service.en}</p><h3>{service.title}</h3>
         <p>{detailed ? service.description : service.summary}</p>

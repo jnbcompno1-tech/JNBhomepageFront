@@ -4,12 +4,12 @@ export const company = {
   name: '제이앤비컴퍼니', brand: 'JNB', logo: '/images/jnb-logo.webp',
   intro: '디자인부터 양산까지 연결하는 파트너',
   description: '제품의 가능성을 함께 살피고, 개발과 부품 소싱, 생산과 공급에 필요한 과정을 연결합니다.',
-  // 과거 홈페이지에 기재된 연락처. 현재 사용 여부를 대표님 검토 시 확인합니다.
-  email: 'comdj@naver.com', phone: '070-4148-3241',
+  // 전화는 2026-10-12 사용자 확인. 이메일은 과거 홈페이지 기재 연락처로 현재 사용 여부 확인 필요.
+  email: 'comdj@naver.com', phone: '010-4657-3241',
   address: officeAddress,
   mapUrl: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
   mapEmbedUrl: `https://www.google.com/maps?q=${mapQuery}&output=embed`,
-  contactNote: '기존 홈페이지에 기재된 연락처입니다. 현재 사용 여부를 확인 중입니다.',
+  contactNote: '이메일은 기존 홈페이지에 기재된 주소로, 현재 사용 여부를 확인 중입니다.',
   heroTitle: '제품의 아이디어부터\n양산과 공급까지',
   heroDescription: '디자인과 부품 소싱부터 OEM·ODM 생산, 품질·납품 대응까지 함께합니다.',
 };
@@ -20,7 +20,7 @@ export const navigation = [
 ];
 export const services = [
   {
-    id: 'design', en: 'DESIGN & DEVELOPMENT', title: '디자인·개발',
+    id: 'design', image: '/images/services/design.webp', en: 'DESIGN & DEVELOPMENT', title: '디자인·개발',
     summary: '아이디어를 구체적인 제품으로.',
     description: '사용 목적과 디자인뿐 아니라 부품 구성, 제작 방법과 생산 조건까지 고려합니다. 준비된 스케치·도면·샘플을 바탕으로 필요한 개발 단계를 함께 살펴봅니다.',
     items: ['제품디자인', '기구·회로설계', '목업·시제품'],
@@ -35,7 +35,7 @@ export const services = [
     scope: '기존 홈페이지의 업무 설명을 정리한 소개 초안입니다. 각 단계의 산출물·일정과 직접 수행·전문 협력사 연계 범위는 상담 후 확정합니다.',
   },
   {
-    id: 'sourcing', en: 'COMPONENT SOURCING', title: '부품 소싱·공급',
+    id: 'sourcing', image: '/images/services/sourcing.webp', en: 'COMPONENT SOURCING', title: '부품 소싱·공급',
     summary: '제품에 맞는 부품을 찾는 과정.',
     description: '디스플레이와 반도체, 센서 등 전자부품의 사양과 공급 조건을 검토합니다. 필요한 품목과 사용 환경, 수량·일정을 바탕으로 소싱 가능 여부를 상담합니다.',
     items: ['LCD·OLED·터치 디스플레이', '센서·반도체', '커넥터·케이블 및 기타 부품'],
@@ -50,7 +50,7 @@ export const services = [
     scope: '2026년 회사소개서에 기재된 품목을 정리했습니다. 상시 재고나 공급을 보장하는 목록이 아니며, 현재 취급 여부·납기·공급 가능 범위는 개별 확인이 필요합니다.',
   },
   {
-    id: 'manufacturing', en: 'OEM / ODM MANUFACTURING', title: 'OEM·ODM 양산',
+    id: 'manufacturing', image: '/images/services/manufacturing.webp', en: 'OEM / ODM MANUFACTURING', title: 'OEM·ODM 양산',
     summary: '생산부터 공급까지, 흐름을 연결합니다.',
     description: '고객이 준비한 설계 자료 또는 개발 단계에서 정리한 자료를 바탕으로 중국 OEM·ODM 생산을 상담합니다. 제조사와의 소통부터 생산 일정, 품질·납품 대응까지 필요한 업무를 협의합니다.',
     items: ['생산 조건·원가 검토', '제조사 소통·일정 조율', '품질·납품 대응'],
