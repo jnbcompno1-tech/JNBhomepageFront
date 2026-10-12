@@ -70,6 +70,7 @@ export const steps = [
 ];
 export type Project = { id: string; title: string; category: string; client: string; summary: string; items: string[]; visible: boolean };
 // 사용자 제공 포트폴리오 Sheet1, F3:G35. 고객사는 익명 표기하며 견적·제안과 양산을 구분합니다.
+// 사진은 같은 엑셀의 삽입 이미지를 브랜드 글자·로고가 안 보이게 잘라 public/images/portfolio/{id}.webp에 둡니다.
 export const projects: Project[] = [
   {
     id: 'medical-equipment', title: '의료기기용 태블릿·부품 및 장비', category: 'ODM 양산 · 부품 소싱·공급',

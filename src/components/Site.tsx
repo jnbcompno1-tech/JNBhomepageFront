@@ -29,6 +29,7 @@ export function Portfolio({ featured = false }: { featured?: boolean }) {
   const displayedProjects = featured ? visibleProjects.slice(0, 3) : visibleProjects;
   return displayedProjects.length ? <div className={s.cards}>
     {displayedProjects.map(project => <article className={s.project} id={project.id} key={project.id}>
+      <div className={s.projectImage}><Image src={`/images/portfolio/${project.id}.webp`} alt={`${project.title} 관련 제품 사진`} fill sizes="(max-width: 600px) 100vw, 400px"/></div>
       <p className={s.eyebrow}>{project.category}</p><h3>{project.title}</h3>
       <p className={s.projectClient}>{project.client}</p><p className={s.projectSummary}>{project.summary}</p>
       {featured ? <Link className={s.textLink} href={`/portfolio#${project.id}`}>수행 업무 보기 ↗</Link> : <><h4>수행 업무</h4><ul className={s.projectItems}>{project.items.map(item => <li key={item}>{item}</li>)}</ul></>}
