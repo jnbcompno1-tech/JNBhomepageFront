@@ -18,6 +18,21 @@ try {
       assert.match(await page.locator('meta[name=robots]').getAttribute('content'), /noindex/);
       assert.match(response.headers()['x-robots-tag'], /noindex/);
       assert.equal(await page.locator('h1').count(), 1);
+      if (route === '/') {
+        assert.equal(await page.getByRole('link', { name: '수행 업무 보기' }).count(), 3);
+        await page.getByRole('link', { name: '수행 업무 보기' }).first().click();
+        await page.waitForURL(base + '/portfolio#medical-equipment');
+        await page.getByRole('heading', { name: '의료기기용 태블릿·부품 및 장비' }).waitFor();
+        await page.goto(base + route, { waitUntil: 'networkidle' });
+      }
+      if (route === '/portfolio') {
+        assert.equal(await page.locator('main article').count(), 5);
+        assert.equal(await page.locator('main article li').count(), 31);
+        await page.getByText('외형 케이스 사출 견적', { exact: true }).waitFor();
+        await page.getByText('신규 거치대 디자인 콘셉트 제안', { exact: true }).waitFor();
+        await page.getByText('광케이블 제조업체 샘플 개발', { exact: true }).waitFor();
+        assert.doesNotMatch(await page.locator('main').innerText(), /아이에스엠|새온|신가몰|아림사이언스|이편한자동화기술|사례 자료 정리 중/);
+      }
       if (route === '/services') {
         await page.getByRole('term').filter({ hasText: '목업제작' }).waitFor();
         await page.getByRole('term').filter({ hasText: '커넥터·케이블' }).waitFor();

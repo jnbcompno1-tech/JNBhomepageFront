@@ -25,5 +25,15 @@ export function Services({ detailed = false }: { detailed?: boolean }) {
   </div>;
 }
 export function Process() { return <ol className={s.steps}>{steps.map((step, i) => <li key={step.title}><span>0{i + 1}</span><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol>; }
-export function Portfolio() { return visibleProjects.length ? <div className={s.cards}>{visibleProjects.map(project => <article className={s.project} key={project.id}>{project.image && <Image src={project.image} alt={project.alt} width={640} height={440}/>}<p className={s.eyebrow}>{project.category}</p><h3>{project.title}</h3>{project.review && <p className={s.note}>검토용 사례 · 실제 실적이 아닙니다.</p>}<dl>{[['과제', project.task], ['수행 주체', project.owner], ['역할·범위', project.role], ['결과', project.result]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></article>)}</div> : <div className={s.empty}><div className={s.emptyArt} aria-hidden="true"><span>JNB</span><span>PROJECT ARCHIVE</span></div><div><p className={s.eyebrow}>PORTFOLIO IN PREPARATION</p><h2>사례 자료 정리 중</h2><p>제품과 프로젝트의 수행 주체, 역할, 공개 가능 범위를 확인하고 있습니다. 확인된 자료부터 차례로 소개하겠습니다.</p><p className={s.note}>현재 실제 고객·제품·성과를 표시한 사례는 없습니다.<br/>대표자의 과거 경험과 JNB의 회사 실적을 구분해 게시합니다.</p><Link className={s.textLink} href="/services">먼저 사업영역 살펴보기 ↗</Link></div></div>; }
+export function Portfolio({ featured = false }: { featured?: boolean }) {
+  const displayedProjects = featured ? visibleProjects.slice(0, 3) : visibleProjects;
+  return displayedProjects.length ? <div className={s.cards}>
+    {displayedProjects.map(project => <article className={s.project} id={project.id} key={project.id}>
+      <p className={s.eyebrow}>{project.category}</p><h3>{project.title}</h3>
+      <p className={s.projectClient}>{project.client}</p><p className={s.projectSummary}>{project.summary}</p>
+      {featured ? <Link className={s.textLink} href={`/portfolio#${project.id}`}>수행 업무 보기 ↗</Link> : <><h4>수행 업무</h4><ul className={s.projectItems}>{project.items.map(item => <li key={item}>{item}</li>)}</ul></>}
+    </article>)}
+  </div> : <div className={s.empty}><div className={s.emptyArt} aria-hidden="true"><span>JNB</span><span>PROJECT ARCHIVE</span></div><div><p className={s.eyebrow}>PORTFOLIO IN PREPARATION</p><h2>사례 자료 정리 중</h2><p>확인된 프로젝트 자료를 준비하고 있습니다.</p><Link className={s.textLink} href="/services">사업영역 살펴보기 ↗</Link></div></div>;
+}
+
 export { s };

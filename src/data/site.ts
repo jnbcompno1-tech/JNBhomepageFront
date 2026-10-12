@@ -64,8 +64,56 @@ export const steps = [
   { title: '실행 방법을 찾습니다', text: '개발·소싱·생산 조건을 살피고 수행 범위와 협력 방식을 협의합니다.' },
   { title: '진행 과정을 연결합니다', text: '합의한 범위에 따라 일정과 품질, 공급 과정의 소통을 이어갑니다.' },
 ];
-export type Project = { id: string; title: string; category: string; task: string; owner: string; role: string; result: string; image?: string; alt: string; review: boolean; visible: boolean };
-// 공개 가능한 자료와 수행 주체를 확인한 뒤 추가합니다. 빈 목록은 안내 화면으로 표시합니다.
-export const projects: Project[] = [];
+export type Project = { id: string; title: string; category: string; client: string; summary: string; items: string[]; visible: boolean };
+// 사용자 제공 포트폴리오 Sheet1, F3:G35. 고객사는 익명 표기하며 견적·제안과 양산을 구분합니다.
+export const projects: Project[] = [
+  {
+    id: 'medical-equipment', title: '의료기기용 태블릿·부품 및 장비', category: 'ODM 양산 · 부품 소싱·공급',
+    client: '의료기기 업체 A사', summary: '태블릿 PC 위탁 개발·양산부터 전원 부품, 레이저·광학 관련 장비 업무까지 수행했습니다.', visible: true,
+    items: [
+      'Windows 10.1인치 태블릿 PC 위탁 개발·양산',
+      '의료용 어댑터 개발 및 인증 (12V 2A)',
+      '배터리 KC 인증·양산 (7.6V 4,200mAh)',
+      '외형 케이스 사출 견적',
+      'USB A to Micro B 전용 케이블 제작',
+      '레이저 장비 프로그램 개발 지원',
+      '레이저 컨트롤 보드 구매',
+      '스캐너 장비 소싱',
+      '칠러 장비 소싱',
+      'Endcap with Fiber 개발·제작',
+      '광케이블 제조업체 샘플 개발',
+      'SMA 커넥터 개발',
+    ],
+  },
+  {
+    id: 'coding-robot', title: '교육용 AI 코딩 제품 부품', category: '부품 소싱·공급',
+    client: '교육용 AI 코딩 업체 B사', summary: '전방 조향 모터, 후방 DC 모터, 광센서와 전원 부품의 인증·양산 업무를 수행했습니다.', visible: true,
+    items: ['전방 조향 모터 양산', '후방 DC 모터 양산', '광센서 양산', '18650 배터리 인증·양산', '어댑터 인증·양산'],
+  },
+  {
+    id: 'vehicle-accessories', title: '차량용 거치대·무선 충전기', category: 'ODM 양산 · 디자인·개발',
+    client: '차량용 거치대 제작·판매 업체 C사', summary: '무선 충전기 개발·양산과 가공 부품, 케이스, 전용 케이블 제작 및 디자인 제안을 수행했습니다.', visible: true,
+    items: [
+      '오토바이 무선 충전기 개발·양산',
+      'SUS 430/420F CNC 가공',
+      '외부 케이스 사출 양산',
+      'PCB 개발 보드 양산',
+      '전용 방수 케이블 제작',
+      '신규 거치대 디자인 콘셉트 제안',
+      '전용 자석 제작·양산',
+      '부스트업 외부 케이블 제작',
+    ],
+  },
+  {
+    id: 'air-quality', title: '공기질 측정 제품 부품·외형', category: 'ODM 양산',
+    client: '공기질 측정 업체 D사', summary: '강화유리·FND 개발과 PCB 제작, 알루미늄 가공 및 외형 양산 제작을 수행했습니다.', visible: true,
+    items: ['강화유리 + FND 개발·양산', 'PCB 제작', '알루미늄 압출·CNC 가공·표면처리', '외형 양산 제작'],
+  },
+  {
+    id: 'forklift-safety', title: '지게차 안전장치 관련 업무', category: '부품 소싱·공급',
+    client: '안전장치 개발 업체 E사', summary: '지게차 안전장치의 개발·견적과 AI 카메라, 부저, 전용 케이블 관련 업무를 수행했습니다.', visible: true,
+    items: ['지게차 안전장치 4채널 개발·견적', 'AI 카메라·부저·전용 케이블 관련 부품 소싱·공급 업무'],
+  },
+];
 export const visibleProjects = projects.filter(project => project.visible);
 export const inquiryItems = ['제품 또는 부품과 사용 목적', '필요한 지원 업무', '현재 진행 단계와 준비된 자료', '희망 일정과 예상 수량'];
