@@ -1,10 +1,14 @@
+const officeAddress = '대전광역시 유성구 배울1로 277, 3동';
+const mapQuery = encodeURIComponent('대전광역시 유성구 배울1로 277');
 export const company = {
   name: '제이앤비컴퍼니', brand: 'JNB', logo: '/images/jnb-logo.webp',
   intro: '디자인부터 양산까지 연결하는 파트너',
   description: '제품의 가능성을 함께 살피고, 개발과 부품 소싱, 생산과 공급에 필요한 과정을 연결합니다.',
   // 과거 홈페이지에 기재된 연락처. 현재 사용 여부를 대표님 검토 시 확인합니다.
   email: 'comdj@naver.com', phone: '070-4148-3241',
-  address: '', mapUrl: '',
+  address: officeAddress,
+  mapUrl: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
+  mapEmbedUrl: `https://www.google.com/maps?q=${mapQuery}&output=embed`,
   contactNote: '기존 홈페이지에 기재된 연락처입니다. 현재 사용 여부를 확인 중입니다.',
   heroTitle: '제품의 아이디어부터\n양산과 공급까지',
   heroDescription: '디자인과 부품 소싱부터 OEM·ODM 생산, 품질·납품 대응까지 함께합니다.',

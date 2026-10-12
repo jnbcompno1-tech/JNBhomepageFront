@@ -38,6 +38,20 @@ try {
         await page.getByRole('term').filter({ hasText: '커넥터·케이블' }).waitFor();
         assert.equal(await page.locator('#design ol li').count(), 6);
       }
+      if (route === '/contact') {
+        await page.getByRole('link', { name: '위치 안내 보기' }).click();
+        await page.waitForURL(base + '/contact#location');
+        assert.equal(await page.locator('#location address').innerText(), '대전광역시 유성구 배울1로 277, 3동');
+        const mapLink = page.getByRole('link', { name: 'Google 지도에서 보기' });
+        const mapUrl = new URL(await mapLink.getAttribute('href'));
+        assert.equal(mapUrl.hostname, 'www.google.com');
+        assert.equal(mapUrl.searchParams.get('query'), '대전광역시 유성구 배울1로 277');
+        const map = page.locator('iframe[title="제이앤비컴퍼니 사무실 위치 지도"]');
+        const embedUrl = new URL(await map.getAttribute('src'));
+        assert.equal(embedUrl.searchParams.get('q'), mapUrl.searchParams.get('query'));
+        assert.equal(embedUrl.searchParams.get('output'), 'embed');
+        assert.equal(await page.getByRole('link', { name: '방문 문의 070-4148-3241' }).getAttribute('href'), 'tel:070-4148-3241');
+      }
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${route} overflow at ${width}`);
       for (const image of await page.locator('img').all()) {
         await image.scrollIntoViewIfNeeded();
