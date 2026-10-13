@@ -19,6 +19,25 @@ try {
       assert.match(response.headers()['x-robots-tag'], /noindex/);
       assert.equal(await page.locator('h1').count(), 1);
       if (route === '/') {
+        const search = page.locator('#component-search');
+        const query = page.getByLabel('부품명·종류 검색');
+        assert.equal(await search.locator('li').count(), 11);
+        await query.fill('거리센서');
+        assert.equal(await search.locator('li').count(), 1);
+        const partEmail = new URL(await search.getByRole('link', { name: '이 품목 이메일 문의' }).getAttribute('href'));
+        assert.match(partEmail.searchParams.get('body'), /광학 센서 · 거리 센서/);
+        await query.fill('DISPLAY');
+        assert.equal(await search.locator('li').count(), 1);
+        await search.getByRole('button', { name: '전원', exact: true }).click();
+        assert.equal(await search.locator('li').count(), 0);
+        await search.getByRole('heading', { name: '등록된 자료에서 찾지 못했습니다.' }).waitFor();
+        await search.getByRole('button', { name: '전체 품목 보기' }).click();
+        assert.equal(await search.locator('li').count(), 11);
+        await query.fill('미등록 ABC#123');
+        const missingEmail = new URL(await search.getByRole('link', { name: '찾는 부품 이메일 문의' }).getAttribute('href'));
+        assert.match(missingEmail.searchParams.get('body'), /미등록 ABC#123/);
+        await search.getByRole('button', { name: '검색어 지우기' }).click();
+        assert.equal(await search.locator('li').count(), 11);
         assert.equal(await page.getByRole('link', { name: '부품·원가 상담하기' }).getAttribute('href'), '/contact');
         await page.getByRole('heading', { name: '기존 부품의 원가 개선', exact: true }).waitFor();
         await page.getByRole('img', { name: 'JNB 취급 소형 DC 모터의 실물 사진' }).waitFor();
