@@ -11,14 +11,15 @@ try {
     const page = await browser.newPage({ viewport: { width, height: 1000 } });
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    for (const route of ['/', '/about', '/services', '/portfolio', '/contact']) {
+    for (const route of ['/', '/about', '/services', '/components', '/portfolio', '/contact']) {
       const response = await page.goto(base + route, { waitUntil: 'networkidle' });
       assert.equal(response.status(), 200, route);
       assert.equal((await page.reload({ waitUntil: 'networkidle' })).status(), 200, `${route} reload`);
       assert.match(await page.locator('meta[name=robots]').getAttribute('content'), /noindex/);
       assert.match(response.headers()['x-robots-tag'], /noindex/);
       assert.equal(await page.locator('h1').count(), 1);
-      if (route === '/') {
+      if (route === '/components') {
+        assert.equal(await page.locator('#main-navigation a[aria-current=page]').innerText(), '취급 부품');
         const search = page.locator('#component-search');
         const query = page.getByLabel('부품명·종류 검색');
         assert.equal(await search.locator('li').count(), 11);
@@ -38,6 +39,10 @@ try {
         assert.match(missingEmail.searchParams.get('body'), /미등록 ABC#123/);
         await search.getByRole('button', { name: '검색어 지우기' }).click();
         assert.equal(await search.locator('li').count(), 11);
+      }
+      if (route === '/') {
+        assert.equal(await page.locator('#component-search').count(), 0);
+        assert.equal(await page.getByRole('link', { name: /취급 부품 검색/ }).first().getAttribute('href'), '/components');
         assert.equal(await page.getByRole('link', { name: '부품·원가 상담하기' }).getAttribute('href'), '/contact');
         await page.getByRole('heading', { name: '기존 부품의 원가 개선', exact: true }).waitFor();
         await page.getByRole('img', { name: 'JNB 취급 소형 DC 모터의 실물 사진' }).waitFor();

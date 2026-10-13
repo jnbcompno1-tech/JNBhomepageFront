@@ -15,7 +15,8 @@ export const company = {
 };
 export const navigation = [
   { href: '/', label: '홈' }, { href: '/about', label: '회사소개' },
-  { href: '/services', label: '사업영역' }, { href: '/portfolio', label: '포트폴리오' },
+  { href: '/services', label: '사업영역' }, { href: '/components', label: '취급 부품' },
+  { href: '/portfolio', label: '포트폴리오' },
   { href: '/contact', label: '문의·오시는 길' },
 ];
 export const supplyProducts = [
