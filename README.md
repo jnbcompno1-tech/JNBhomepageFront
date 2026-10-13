@@ -1,5 +1,7 @@
 # 제이앤비컴퍼니 홈페이지
 
+정식 공개 준비와 세션별 작업 배정은 [배포 준비 체크리스트](docs/production-release-checklist.md)를 기준으로 진행합니다.
+
 Next.js App Router · TypeScript · CSS Modules. 한국어 5개 페이지의 소개 콘텐츠는 정적 생성합니다. 모바일 메뉴만 클라이언트 컴포넌트입니다.
 
 ## 실행과 검수
