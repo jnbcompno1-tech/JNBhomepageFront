@@ -1,4 +1,4 @@
-// 공급 사례와 소개 자료에 있는 품목입니다. 재고나 공급 확정을 뜻하지 않습니다.
+// 기존 공급망을 통해 조달 가능한 주요 취급 품목. 상담 품목에는 제한이 없으며 실제 공급 조건은 개별 확인합니다.
 export const components = [
   { name: 'LCD · OLED · 터치 디스플레이', category: '디스플레이', aliases: '엘씨디 화면 display touch 패널', scope: '사양에 맞는 디스플레이 소싱' },
   { name: 'DC 모터 · 조향 모터', category: '모터·센서', aliases: '직류 motor steering 구동', scope: '코딩 로봇용 모터 양산 공급 경험' },

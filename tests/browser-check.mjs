@@ -30,7 +30,7 @@ try {
         assert.equal(await search.locator('li').count(), 1);
         await search.getByRole('button', { name: '전원', exact: true }).click();
         assert.equal(await search.locator('li').count(), 0);
-        await search.getByRole('heading', { name: '등록된 자료에서 찾지 못했습니다.' }).waitFor();
+        await search.getByRole('heading', { name: '검색 조건에 맞는 등록 품목이 없습니다.' }).waitFor();
         await search.getByRole('button', { name: '전체 품목 보기' }).click();
         assert.equal(await search.locator('li').count(), 11);
         await query.fill('미등록 ABC#123');

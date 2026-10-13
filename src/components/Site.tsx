@@ -14,7 +14,7 @@ export function Services({ detailed = false }: { detailed?: boolean }) {
         <p>{detailed ? service.description : service.summary}</p>
         <ul>{service.items.map(item => <li key={item}>{item}</li>)}</ul>
         {detailed ? <>
-          <h4>{service.id === 'sourcing' ? '소싱 상담 품목' : '지원 업무 안내'}</h4>
+          <h4>{service.id === 'sourcing' ? '주요 취급 품목' : '지원 업무 안내'}</h4>
           <dl className={s.serviceDescriptions}>{service.details.map(detail => <div key={detail.title}><dt>{detail.title}</dt><dd>{detail.text}</dd></div>)}</dl>
           <h4>진행 과정</h4>
           <ol className={s.workflow}>{service.process.map((step, index) => <li key={step}><span aria-hidden="true">0{index + 1}</span>{step}</li>)}</ol>
