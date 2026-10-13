@@ -19,6 +19,12 @@ try {
       assert.match(response.headers()['x-robots-tag'], /noindex/);
       assert.equal(await page.locator('h1').count(), 1);
       if (route === '/') {
+        assert.equal(await page.getByRole('link', { name: '부품·원가 상담하기' }).getAttribute('href'), '/contact');
+        await page.getByRole('heading', { name: '기존 부품의 원가 개선', exact: true }).waitFor();
+        await page.getByRole('img', { name: 'JNB 취급 소형 DC 모터의 실물 사진' }).waitFor();
+        assert.equal(await page.locator('main figure').count(), 4);
+        await page.getByRole('img', { name: '태블릿 위탁 개발·양산 관련 제품 사진' }).waitFor();
+        await page.getByRole('img', { name: '센서와 전원 부품을 공급한 교육용 코딩 제품의 구성도' }).waitFor();
         assert.equal(await page.getByRole('link', { name: '수행 업무 보기' }).count(), 3);
         await page.getByRole('link', { name: '수행 업무 보기' }).first().click();
         await page.waitForURL(base + '/portfolio#medical-equipment');
@@ -39,6 +45,13 @@ try {
         assert.equal(await page.locator('#design ol li').count(), 6);
       }
       if (route === '/contact') {
+        assert.equal(await page.getByRole('link', { name: '전화로 상담하기' }).getAttribute('href'), 'tel:010-4657-3241');
+        const inquiryUrl = new URL(await page.getByRole('link', { name: '상담 내용 작성하기' }).getAttribute('href'));
+        assert.equal(inquiryUrl.protocol, 'mailto:');
+        assert.equal(inquiryUrl.pathname, 'comdj@naver.com');
+        assert.equal(inquiryUrl.searchParams.get('subject'), 'JNB 부품 공급 상담');
+        assert.match(inquiryUrl.searchParams.get('body'), /부품명 \/ 품번:/);
+        assert.match(inquiryUrl.searchParams.get('body'), /예상 구매 수량 \/ 반복 발주 여부:/);
         await page.getByRole('link', { name: '위치 안내 보기' }).click();
         await page.waitForURL(base + '/contact#location');
         assert.equal(await page.locator('#location address').innerText(), '대전광역시 유성구 배울1로 277, 3동');

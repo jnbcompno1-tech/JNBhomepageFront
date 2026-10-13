@@ -2,23 +2,59 @@ const officeAddress = '대전광역시 유성구 배울1로 277, 3동';
 const mapQuery = encodeURIComponent('대전광역시 유성구 배울1로 277');
 export const company = {
   name: '제이앤비컴퍼니', brand: 'JNB', logo: '/images/jnb-logo.webp',
-  intro: '디자인부터 양산까지 연결하는 파트너',
-  description: '제품의 가능성을 함께 살피고, 개발과 부품 소싱, 생산과 공급에 필요한 과정을 연결합니다.',
+  intro: '중국 제조사와 직접 소통하는 부품 공급 파트너',
+  description: 'LCD·모터·센서 등 제품에 필요한 부품을 소싱하고 공급합니다. 중국 제조사와 직접 소통하며 기존 부품의 원가 개선, OEM·ODM 생산과 품질·납품 대응을 돕습니다.',
   // 전화는 2026-10-12 사용자 확인. 이메일은 과거 홈페이지 기재 연락처로 현재 사용 여부 확인 필요.
   email: 'comdj@naver.com', phone: '010-4657-3241',
   address: officeAddress,
   mapUrl: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
   mapEmbedUrl: `https://www.google.com/maps?q=${mapQuery}&output=embed`,
   contactNote: '이메일은 기존 홈페이지에 기재된 주소로, 현재 사용 여부를 확인 중입니다.',
-  heroTitle: '제품의 아이디어부터\n양산과 공급까지',
-  heroDescription: '디자인과 부품 소싱부터 OEM·ODM 생산, 품질·납품 대응까지 함께합니다.',
+  heroTitle: '부품 원가부터\n공급 문제까지, JNB',
+  heroDescription: 'LCD·모터·센서 등 필요한 부품을 찾고, 중국 제조사와 직접 소통합니다. 기존 부품의 대체 공급부터 생산·품질·배송 조율까지 함께합니다.',
 };
 export const navigation = [
   { href: '/', label: '홈' }, { href: '/about', label: '회사소개' },
   { href: '/services', label: '사업영역' }, { href: '/portfolio', label: '포트폴리오' },
   { href: '/contact', label: '문의·오시는 길' },
 ];
+export const supplyProducts = [
+  { title: '디스플레이·태블릿', detail: 'LCD·OLED·터치 / 태블릿 개발·양산', image: '/images/portfolio/medical-equipment.webp', alt: '태블릿 위탁 개발·양산 관련 제품 사진', width: 235, height: 126 },
+  { title: '모터', detail: '조향 모터·소형 DC 모터', image: '/images/sourcing-motor.webp', alt: 'JNB 취급 소형 DC 모터의 실물 사진', width: 732, height: 530 },
+  { title: '센서·전원 부품', detail: '광센서·배터리·어댑터', image: '/images/portfolio/coding-robot.webp', alt: '센서와 전원 부품을 공급한 교육용 코딩 제품의 구성도', width: 570, height: 379 },
+  { title: '케이블·충전기', detail: '전용 케이블·무선 충전기', image: '/images/portfolio/vehicle-accessories.webp', alt: '무선 충전기 개발·양산 관련 제품 사진', width: 220, height: 150 },
+];
 export const services = [
+  {
+    id: 'sourcing', image: '/images/services/sourcing.webp', en: 'COMPONENT SOURCING', title: '부품 소싱·공급',
+    summary: '새로운 부품 조달부터 기존 부품의 원가 개선까지.',
+    description: '중국 제조사와 직접 소통해 필요한 사양과 공급 조건을 협의합니다. 이미 생산 중인 제품도 현재 부품의 사양·구매량을 기준으로 대체 공급과 원가 개선 가능성을 검토합니다.',
+    items: ['LCD·OLED·터치 디스플레이', '모터·센서·반도체', '커넥터·케이블·전원 부품'],
+    details: [
+      { title: '디스플레이', text: 'LCD, OLED, 터치 디스플레이 등 제품에 맞는 사양과 공급 조건 검토.' },
+      { title: '모터', text: '교육용 코딩 제품의 전방 조향 모터·후방 DC 모터 양산 경험을 바탕으로 사용 환경과 요구 사양을 확인합니다.' },
+      { title: '반도체·센서', text: '제품 기능과 사용 환경에 필요한 반도체·센서 부품 소싱 상담.' },
+      { title: '커넥터·케이블', text: '부품 간 연결과 제품 구성에 필요한 커넥터·케이블 상담.' },
+      { title: 'LED·배터리', text: 'LED, 배터리와 2차전지 관련 품목의 소싱 가능 여부 확인.' },
+      { title: '기타 전자부품', text: '태양전지, LIC, 크리스털, 부저 등 소개서에 기재된 품목 상담.' },
+      { title: '기존 부품 대체 검토', text: '현재 품번·사양·예상 구매량을 바탕으로 대체 후보와 조달 비용을 비교합니다. 적용 전 샘플 검증과 고객의 변경 승인이 필요합니다.' },
+    ],
+    process: ['필요 사양 확인', '부품·공급 조건 검토', '샘플·납품 협의'],
+    scope: '공급 가능 사양·최소 주문량·샘플·납기는 품목별로 협의합니다. 대체품은 요구 성능과 적용 조건을 확인한 뒤 공급하며, 절감 가능 여부는 검토 결과에 따라 달라집니다.',
+  },
+  {
+    id: 'manufacturing', image: '/images/services/manufacturing.webp', en: 'OEM / ODM MANUFACTURING', title: 'OEM·ODM 양산',
+    summary: '중국 공장과의 생산·품질·배송 소통을 함께합니다.',
+    description: '설계 자료와 예상 수량을 바탕으로 중국 현지 공장 섭외와 OEM·ODM 생산을 상담합니다. 제조사와 생산 조건·일정을 조율하고, 품질 문제 발생 시 원인 확인과 후속 조치를 협의합니다.',
+    items: ['생산 조건·원가 검토', '제조사 소통·일정 조율', '품질·납품 대응'],
+    details: [
+      { title: '생산 준비', text: '제품 사양·설계 자료·예상 수량을 확인하고 제조사 조사와 생산 조건을 검토합니다.' },
+      { title: '생산·공정 조율', text: '제조사와 공정·생산 일정을 협의하고 진행 과정의 소통을 지원합니다.' },
+      { title: '품질·납품 대응', text: '품질 확인 항목과 출하·배송 일정을 제조사와 협의합니다. 문제가 발생하면 제조사에 확인을 요청하고 후속 대응을 조율합니다.' },
+    ],
+    process: ['제품·설계 자료 확인', '제조사·생산 조건 검토', '샘플·시제품 확인', '생산·품질·납품 조율'],
+    scope: '제조는 협력 제조사와 연계합니다. 검사 기준·배송 조건·문제 발생 시 대응 범위와 책임은 상담 후 정합니다.',
+  },
   {
     id: 'design', image: '/images/services/design.webp', en: 'DESIGN & DEVELOPMENT', title: '디자인·개발',
     summary: '아이디어를 구체적인 제품으로.',
@@ -32,41 +68,13 @@ export const services = [
       { title: '시제품제작', text: '디자인·기능·부품 간 간섭을 확인하기 위한 시제품을 검토합니다. 3D 프린팅, CNC, 진공주형, 시사출 등 제작 방법은 요구 조건에 따라 협의합니다.' },
     ],
     process: ['문의·자료 전달', '자료 검토·범위 협의', '사전 조사', '콘셉트 설정', '검토·수정·보완', '최종 자료 전달'],
-    scope: '기존 홈페이지의 업무 설명을 정리한 소개 초안입니다. 각 단계의 산출물·일정과 직접 수행·전문 협력사 연계 범위는 상담 후 확정합니다.',
-  },
-  {
-    id: 'sourcing', image: '/images/services/sourcing.webp', en: 'COMPONENT SOURCING', title: '부품 소싱·공급',
-    summary: '제품에 맞는 부품을 찾는 과정.',
-    description: '디스플레이와 반도체, 센서 등 전자부품의 사양과 공급 조건을 검토합니다. 필요한 품목과 사용 환경, 수량·일정을 바탕으로 소싱 가능 여부를 상담합니다.',
-    items: ['LCD·OLED·터치 디스플레이', '센서·반도체', '커넥터·케이블 및 기타 부품'],
-    details: [
-      { title: '디스플레이', text: 'LCD, OLED, 터치 디스플레이 등 제품에 맞는 사양과 공급 조건 검토.' },
-      { title: '반도체·센서', text: '제품 기능과 사용 환경에 필요한 반도체·센서 부품 소싱 상담.' },
-      { title: '커넥터·케이블', text: '부품 간 연결과 제품 구성에 필요한 커넥터·케이블 상담.' },
-      { title: 'LED·배터리', text: 'LED, 배터리와 2차전지 관련 품목의 소싱 가능 여부 확인.' },
-      { title: '기타 전자부품', text: '태양전지, LIC, 크리스털, 부저, 모터 등 소개서에 기재된 품목 상담.' },
-    ],
-    process: ['필요 사양 확인', '부품·공급 조건 검토', '샘플·납품 협의'],
-    scope: '2026년 회사소개서에 기재된 품목을 정리했습니다. 상시 재고나 공급을 보장하는 목록이 아니며, 현재 취급 여부·납기·공급 가능 범위는 개별 확인이 필요합니다.',
-  },
-  {
-    id: 'manufacturing', image: '/images/services/manufacturing.webp', en: 'OEM / ODM MANUFACTURING', title: 'OEM·ODM 양산',
-    summary: '생산부터 공급까지, 흐름을 연결합니다.',
-    description: '고객이 준비한 설계 자료 또는 개발 단계에서 정리한 자료를 바탕으로 중국 OEM·ODM 생산을 상담합니다. 제조사와의 소통부터 생산 일정, 품질·납품 대응까지 필요한 업무를 협의합니다.',
-    items: ['생산 조건·원가 검토', '제조사 소통·일정 조율', '품질·납품 대응'],
-    details: [
-      { title: '생산 준비', text: '제품 사양·설계 자료·예상 수량을 확인하고 제조사 조사와 생산 조건을 검토합니다.' },
-      { title: '생산·공정 조율', text: '제조사와 공정·생산 일정을 협의하고 진행 과정의 소통을 지원합니다.' },
-      { title: '품질·납품 대응', text: '품질 확인 항목과 납품 조건을 정리하고 문제 발생 시 대응 범위를 협의합니다.' },
-    ],
-    process: ['제품·설계 자료 확인', '제조사·생산 조건 검토', '샘플·시제품 확인', '생산·품질·납품 조율'],
-    scope: '기존 홈페이지 기준 소개 초안입니다. 제조는 협력 제조사와 연계하며, JNB의 관리·지원 범위와 책임은 상담 후 정합니다. 원가 절감률과 무결점 생산을 보장하지 않습니다.',
+    scope: '각 단계의 산출물·일정과 직접 수행·전문 협력사 연계 범위는 상담 후 확정합니다.',
   },
 ];
 export const steps = [
-  { title: '필요한 일을 듣습니다', text: '제품과 현재 단계, 필요한 지원, 희망 일정을 함께 정리합니다.' },
-  { title: '실행 방법을 찾습니다', text: '개발·소싱·생산 조건을 살피고 수행 범위와 협력 방식을 협의합니다.' },
-  { title: '진행 과정을 연결합니다', text: '합의한 범위에 따라 일정과 품질, 공급 과정의 소통을 이어갑니다.' },
+  { title: '부품과 구매 조건 확인', text: '품번·사진·사양서와 예상 수량, 현재 조달의 어려움을 알려주세요. 준비된 자료부터 검토합니다.' },
+  { title: '제조사 협의와 샘플 검토', text: '제조사와 사양·가격·공급 조건을 협의합니다. 대체 부품은 샘플 확인과 고객 승인 후 적용합니다.' },
+  { title: '생산·납품과 후속 대응', text: '합의한 조건으로 생산·배송 일정을 조율합니다. 품질 문제가 생기면 제조사와 후속 대응을 협의합니다.' },
 ];
 export type Project = { id: string; title: string; category: string; client: string; summary: string; items: string[]; visible: boolean };
 // 사용자 제공 포트폴리오 Sheet1, F3:G35. 고객사는 익명 표기하며 견적·제안과 양산을 구분합니다.
@@ -121,4 +129,4 @@ export const projects: Project[] = [
   },
 ];
 export const visibleProjects = projects.filter(project => project.visible);
-export const inquiryItems = ['제품 또는 부품과 사용 목적', '필요한 지원 업무', '현재 진행 단계와 준비된 자료', '희망 일정과 예상 수량'];
+export const inquiryItems = ['부품명·품번 또는 제품 사진·사양서', '사용 환경과 현재 겪고 있는 문제', '예상 구매 수량과 반복 발주 여부', '희망 납기와 필요한 지원'];

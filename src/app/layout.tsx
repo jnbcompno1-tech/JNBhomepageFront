@@ -6,7 +6,7 @@ import { deployment } from '@/lib/deployment.mjs';
 import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(deployment.siteUrl),
-  title: { default: `${company.name} | 아이디어부터 양산과 공급까지`, template: `%s | ${company.name}` },
+  title: { default: `${company.name} | LCD·모터·센서 소싱 · 중국 OEM·ODM`, template: `%s | ${company.name}` },
   description: company.description,
   robots: { index: deployment.isPublic, follow: deployment.isPublic, nocache: !deployment.isPublic },
   openGraph: { title: company.name, description: company.description, locale: 'ko_KR', type: 'website', siteName: company.name },
