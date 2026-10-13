@@ -25,7 +25,7 @@ CHECK_MODE=review node tests/browser-check.mjs
 
 | 모드 | 대상 빌드 | 확인 내용 |
 | --- | --- | --- |
-| `review`(기본) | 기본 빌드, Vercel Preview·테스트 배포 | TEST PREVIEW 배너, robots meta·`X-Robots-Tag` noindex, robots.txt `Disallow: /`, canonical 없음, 빈 사이트맵 |
+| `review`(기본) | 기본 빌드, Vercel Preview·테스트 배포 | robots meta·`X-Robots-Tag` noindex, robots.txt `Disallow: /`, canonical 없음, 빈 사이트맵 |
 | `public` | `SITE_PUBLIC=true` 정식 빌드 | 배너 없음, index 허용, noindex 헤더 없음, canonical·og:url이 `CHECK_URL` 기준, 사이트맵 6개, robots의 Sitemap 연결 |
 
 로컬에서 정식 모드를 검사할 때는 대표 URL 대신 로컬 주소로 빌드합니다.

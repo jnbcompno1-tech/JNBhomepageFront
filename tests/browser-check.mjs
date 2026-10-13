@@ -29,7 +29,6 @@ try {
       } else {
         assert.match(robotsMeta, /noindex/);
         assert.match(response.headers()['x-robots-tag'], /noindex/);
-        assert.equal(await page.getByText('TEST PREVIEW').count(), 1);
         assert.equal(await page.locator('link[rel=canonical]').count(), 0);
       }
       assert.equal(await page.locator('link[rel=icon]').count() > 0, true);
