@@ -11,7 +11,8 @@ const results = [];
 await mkdir('output/screenshots', { recursive: true });
 try {
   for (const width of [360, 768, 1440]) {
-    const page = await browser.newPage({ viewport: { width, height: 1000 } });
+    const context = await browser.newContext({ viewport: { width, height: 1000 }, permissions: ['clipboard-read', 'clipboard-write'] });
+    const page = await context.newPage();
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     for (const route of ['/', '/about', '/services', '/components', '/portfolio', '/contact']) {
@@ -43,6 +44,7 @@ try {
         assert.equal(await search.locator('li').count(), 1);
         const partEmail = new URL(await search.getByRole('link', { name: '이 품목 이메일 문의' }).getAttribute('href'));
         assert.match(partEmail.searchParams.get('body'), /광학 센서 · 거리 센서/);
+        assert.equal(await search.getByRole('link', { name: '010-4657-3241' }).getAttribute('href'), 'tel:010-4657-3241');
         await query.fill('DISPLAY');
         assert.equal(await search.locator('li').count(), 1);
         await search.getByRole('button', { name: '전원', exact: true }).click();
@@ -85,6 +87,9 @@ try {
         assert.equal(await page.locator('#design ol li').count(), 6);
       }
       if (route === '/contact') {
+        await page.getByRole('button', { name: '이메일 주소 복사' }).press('Enter');
+        await page.getByText('이메일 주소를 복사했습니다.').waitFor();
+        assert.equal(await page.evaluate(() => navigator.clipboard.readText()), 'comdj@naver.com');
         assert.equal(await page.getByRole('link', { name: '전화로 상담하기' }).getAttribute('href'), 'tel:010-4657-3241');
         const inquiryUrl = new URL(await page.getByRole('link', { name: '상담 내용 작성하기' }).getAttribute('href'));
         assert.equal(inquiryUrl.protocol, 'mailto:');
@@ -136,7 +141,7 @@ try {
     assert.deepEqual(errors, []);
     const mail = await page.locator('footer a[href^="mailto:"]').first().getAttribute('href');
     assert.equal(mail, 'mailto:comdj@naver.com');
-    await page.close();
+    await context.close();
   }
   const robotsTxt = await (await fetch(base + '/robots.txt')).text();
   const sitemap = await (await fetch(base + '/sitemap.xml')).text();
