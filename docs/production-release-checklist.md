@@ -24,7 +24,7 @@
 
 - [x] `comdj@naver.com`의 실제 수신 가능 확인(2026-10-13 사용자). 첨부·회신은 별도 확인 없음. 사용하지 않으면 새 주소 전달. (R02 선행)
 - [ ] 문의를 확인·회신할 담당자 지정. 응답 시간을 게시할지 결정. (R02)
-- [ ] Vercel 프로젝트 `jnb4/jnb-company` 운영 계정과 `jnbcompany.co.kr` 도메인·DNS 관리 계정 확인. (R08 선행)
+- [ ] Vercel 프로젝트 `jnb4/jnb-company` 운영 계정과 `jnbcompany.co.kr` 도메인·DNS 관리 계정 확인. 도메인은 메일플러그 구매로 전달받음(2026-10-13). 메일플러그 로그인 계정 확인 필요. (R08 선행)
 - [ ] 공개 후 대표님 검토 방식 결정: Preview 배포 보호(Vercel 로그인)를 유지할지, 검토자 초대·공유 링크를 쓸지. (R05·R07·R08)
 - [ ] 대표자명·사업자등록번호 등 신뢰 정보 게시 여부와 값 전달. 미전달이면 게시하지 않으며 공개를 막지 않는다. (R02)
 
@@ -208,7 +208,7 @@ R04를 적용하면 공유 이미지·아이콘은 Next.js 파일 규칙으로 �
 - R04 변경점: 페이지 metadata의 `openGraph`가 파일 규칙 `opengraph-image`를 덮어써 하위 페이지에 og:image가 빠졌다. 그래서 공유 이미지를 `public/`에 두고 `seo.ts`에서 직접 지정했다.
 - 검증: lint·typecheck·단위 테스트 4건 통과. `next build` 후 `CHECK_MODE=review` 18건 통과. `SITE_PUBLIC=true SITE_URL=http://localhost:3000` 빌드 후 `CHECK_MODE=public` 18건 통과(index 허용, X-Robots-Tag 없음, 배너 없음, canonical·og:url, sitemap 6건, robots Sitemap 연결, 아이콘 응답).
 - 미적용: 검색 소유 확인 값(값 없음, R08에서 `metadata.verification`으로 추가), Organization 구조화 데이터(필수 아님, 보류).
-- 외부 확인 대기: `jnbcompany.co.kr`·`www`는 현재 211.43.12.102(기존 호스팅)를 가리키며 Vercel 프로젝트 `jnb4/jnb-company`에 도메인 0건. Vercel·GitHub 계정은 CLI 로그인 확인(`jnbcompno1-8133`). 회신 담당자 미정.
+- 외부 확인 대기: 도메인은 메일플러그 구매(사용자 전언), 네임서버 `ns.mailplug.com`·`ns2.mailplug.com`. `jnbcompany.co.kr`·`www`는 현재 211.43.12.102(메일플러그 주차 페이지, 기존 홈페이지 아님)를 가리키고 MX 레코드는 없으며 Vercel 프로젝트 `jnb4/jnb-company`에 도메인 0건. Vercel·GitHub 계정은 CLI 로그인 확인(`jnbcompno1-8133`). 회신 담당자 미정.
 - 다음 담당에게: R08 순서는 ① Vercel에 두 도메인 추가 → ② 도메인 관리 업체에서 DNS 변경(Vercel 안내값) → ③ HTTPS 확인 → ④ Production env `SITE_PUBLIC=true`, `SITE_URL=https://www.jnbcompany.co.kr` → ⑤ 재배포 → ⑥ `CHECK_URL=https://www.jnbcompany.co.kr CHECK_MODE=public node tests/browser-check.mjs`.
 
 ### R06·R07 — 문의 접근성·운영 문서

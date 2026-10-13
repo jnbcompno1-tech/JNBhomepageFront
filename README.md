@@ -72,7 +72,7 @@ npx vercel deploy --prod --build-env SITE_PUBLIC=false
 
 1. 검수한 커밋 SHA를 정하고 현재 Production 배포 ID를 복구용으로 기록합니다(`npx vercel ls --prod`).
 2. Vercel 프로젝트에 `www.jnbcompany.co.kr`, `jnbcompany.co.kr`을 추가합니다(`npx vercel domains add`). 대표는 www, 루트 도메인은 www로 이동하게 합니다.
-3. 도메인 관리 업체에서 Vercel이 안내한 DNS 값으로 변경합니다. 현재 두 주소는 기존 호스팅(211.43.12.102)을 가리키며, 변경 즉시 기존 홈페이지가 내려갑니다.
+3. 메일플러그(mailplug) 관리 화면에서 Vercel이 안내한 DNS 값으로 변경합니다. 네임서버는 `ns.mailplug.com`·`ns2.mailplug.com`이며, 현재 두 주소는 메일플러그 주차 페이지(211.43.12.102)를 가리킵니다. MX 레코드가 없어 도메인 메일에는 영향이 없습니다(2026-10-13 확인). 네임서버는 바꾸지 않고 A·CNAME 레코드만 수정합니다.
 4. 두 주소의 HTTPS 접속과 경로 유지 이동을 확인합니다.
 5. Production 환경에 `SITE_PUBLIC=true`, `SITE_URL=https://www.jnbcompany.co.kr`을 설정하고 같은 커밋으로 재배포합니다.
 6. `CHECK_URL=https://www.jnbcompany.co.kr CHECK_MODE=public node tests/browser-check.mjs`를 통과시킵니다. 실제 휴대폰으로 메뉴·검색·전화·메일·지도를 확인합니다.
@@ -82,6 +82,6 @@ npx vercel deploy --prod --build-env SITE_PUBLIC=false
 
 - 코드 문제: `npx vercel rollback <이전 배포 ID 또는 URL>` 또는 Vercel 대시보드의 Instant Rollback. 이후 원인 커밋을 `git revert`해 푸시합니다.
 - 공개 설정 문제: Production의 `SITE_PUBLIC`을 `false`로 바꾸고 재배포합니다. 환경변수만 바꾸면 반영되지 않습니다.
-- 도메인 문제: 도메인 관리 업체에서 DNS를 기존 값(211.43.12.102)으로 되돌립니다. DNS 반영에는 시간이 걸립니다.
+- 도메인 문제: 메일플러그 관리 화면에서 DNS를 기존 값(211.43.12.102)으로 되돌립니다. DNS 반영에는 시간이 걸립니다.
 
 회사 사이트의 Vercel Hobby 사용 조건과 실제 계정의 플랜은 운영자가 확인해야 합니다. 이번 테스트가 상업용 서비스 허용 여부의 판정을 대신하지 않습니다.
