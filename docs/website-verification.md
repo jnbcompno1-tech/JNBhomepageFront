@@ -1,6 +1,18 @@
 # JNB 테스트 배포 검수
 
-검수일: 2026-10-08
+## 최신 검수 — 2026-10-13 (정식 공개 준비)
+
+- 대상: 로컬 `next build`/`next start`, 커밋 `1a50a27` 기준(문서 변경 제외). Vercel 직전 Production 배포 `dpl_C2kMkvuxmz8vk5cGSTY9St5s7RPC`(비공개 모드).
+- lint·typecheck 통과, 단위 테스트 4건 통과, `npm audit --omit=dev` 0건.
+- `CHECK_MODE=review`: 6개 경로 × 360·768·1440px 18건 통과. 배너·noindex·`X-Robots-Tag`·`Disallow: /`·canonical 없음·빈 사이트맵.
+- `CHECK_MODE=public`(`SITE_PUBLIC=true SITE_URL=http://localhost:3000`): 18건 통과. 배너 없음·index 허용·noindex 헤더 없음·canonical/og:url·사이트맵 6개·robots Sitemap 연결.
+- 공통: 아이콘·공유 이미지 응답 200, 이메일 주소 복사(키보드 Enter), 품목 검색 영역 전화 링크, 메일·전화·지도 링크.
+- 미검수: 실제 대표 도메인(도메인 미연결), 실제 휴대폰·Safari·Firefox, 메일 회신.
+
+아래는 과거 검수 기록이며 당시 상태를 보존합니다.
+
+## 2026-10-08 검수
+
 
 - 테스트 URL: https://jnb-company.vercel.app
 - Vercel 프로젝트: `jnb4/jnb-company`
