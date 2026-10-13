@@ -4,12 +4,12 @@ export const company = {
   name: '제이앤비컴퍼니', brand: 'JNB', logo: '/images/jnb-logo.webp',
   intro: '중국 제조사와 직접 소통하는 부품 공급 파트너',
   description: 'LCD·모터·센서 등 제품에 필요한 부품을 소싱하고 공급합니다. 중국 제조사와 직접 소통하며 기존 부품의 원가 개선, OEM·ODM 생산과 품질·납품 대응을 돕습니다.',
-  // 전화는 2026-10-12 사용자 확인. 이메일은 과거 홈페이지 기재 연락처로 현재 사용 여부 확인 필요.
+  // 전화 2026-10-12, 이메일 수신 2026-10-13 사용자 확인.
   email: 'comdj@naver.com', phone: '010-4657-3241',
   address: officeAddress,
   mapUrl: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
   mapEmbedUrl: `https://www.google.com/maps?q=${mapQuery}&output=embed`,
-  contactNote: '이메일은 기존 홈페이지에 기재된 주소로, 현재 사용 여부를 확인 중입니다.',
+  contactNote: '사진·사양서를 첨부해 메일로 보내주시면 확인 후 연락드립니다.',
   heroTitle: '부품 원가부터\n공급 문제까지, JNB',
   heroDescription: 'LCD·모터·센서 등 필요한 부품을 찾고, 중국 제조사와 직접 소통합니다. 기존 부품의 대체 공급부터 생산·품질·배송 조율까지 함께합니다.',
 };

@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Image from 'next/image';
 import { PageIntro, Process, ContactCTA, s } from '@/components/Site';
 import { company } from '@/data/site';
-export const metadata: Metadata = { title: '회사소개', description: '중국 제조사와 직접 소통하며 디스플레이·모터·센서 등 부품 소싱과 OEM·ODM 생산을 지원하는 제이앤비컴퍼니를 소개합니다.' };
+export const metadata = pageMetadata('/about', '회사소개', '중국 제조사와 직접 소통하며 디스플레이·모터·센서 등 부품 소싱과 OEM·ODM 생산을 지원하는 제이앤비컴퍼니를 소개합니다.');
 export default function About() { return <><PageIntro eyebrow="ABOUT JNB" title="제조사와 고객 사이, JNB가 함께합니다." text={company.intro}/><section className={`${s.section} ${s.aboutGrid}`}><div className={s.brandPanel}><Image src={company.logo} width={480} height={349} alt="J&B COMPANY 브랜드 로고"/><p>COMPONENT SOURCING · OEM / ODM</p></div><div><p className={s.eyebrow}>OUR COMPANY</p><h2>부품을 찾는 일부터<br/>공급 이후의 소통까지.</h2><p className={s.lead}>{company.description}</p><p>디스플레이 공급에서 시작해 교육용 코딩 제품의 모터·광센서, 전원 부품과 전용 케이블 등으로 업무를 넓혀왔습니다. 고객이 제품 개발과 판매에 집중할 수 있도록 제조사와 사양·생산 조건을 협의하고 공급 과정의 소통을 맡습니다.</p><dl className={s.infoList}><div><dt>회사명</dt><dd>{company.name}</dd></div><div><dt>사업영역</dt><dd>부품 소싱·공급 / 중국 OEM·ODM 양산 / 디자인·개발</dd></div><div><dt>위치</dt><dd>{company.address}</dd></div></dl></div></section><section className={s.processSection}><div className={s.container}><p className={s.eyebrow}>OUR APPROACH</p><h2>사양 확인부터 납품 대응까지.</h2><Process/><div className={s.experience}><h3>이미 생산 중인 제품도 상담할 수 있습니다.</h3><p>현재 사용하는 부품의 사양과 구매 조건을 확인하고 대체 공급 가능성을 검토합니다. 변경에 필요한 샘플 검증과 승인 조건을 고객과 먼저 협의하며, 제조사와 품질·배송 문제의 후속 대응도 조율합니다.</p></div></div></section><ContactCTA/></>; }

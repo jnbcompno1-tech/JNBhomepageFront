@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const base = process.env.CHECK_URL || 'http://localhost:3000';
+const mode = process.env.CHECK_MODE || 'review';
+if (!['review', 'public'].includes(mode)) throw new Error('CHECK_MODE must be review or public');
+const isPublic = mode === 'public';
 const browser = await chromium.launch({ channel: 'msedge' });
 const results = [];
 await mkdir('output/screenshots', { recursive: true });
@@ -15,8 +18,21 @@ try {
       const response = await page.goto(base + route, { waitUntil: 'networkidle' });
       assert.equal(response.status(), 200, route);
       assert.equal((await page.reload({ waitUntil: 'networkidle' })).status(), 200, `${route} reload`);
-      assert.match(await page.locator('meta[name=robots]').getAttribute('content'), /noindex/);
-      assert.match(response.headers()['x-robots-tag'], /noindex/);
+      const robotsMeta = await page.locator('meta[name=robots]').getAttribute('content');
+      if (isPublic) {
+        assert.doesNotMatch(robotsMeta, /noindex/);
+        assert.equal(response.headers()['x-robots-tag'], undefined);
+        assert.equal(await page.getByText('TEST PREVIEW').count(), 0);
+        assert.equal(new URL(await page.locator('link[rel=canonical]').getAttribute('href')).href, new URL(route, base).href);
+        assert.equal(new URL(await page.locator('meta[property="og:url"]').getAttribute('content')).href, new URL(route, base).href);
+      } else {
+        assert.match(robotsMeta, /noindex/);
+        assert.match(response.headers()['x-robots-tag'], /noindex/);
+        assert.equal(await page.getByText('TEST PREVIEW').count(), 1);
+        assert.equal(await page.locator('link[rel=canonical]').count(), 0);
+      }
+      assert.equal(await page.locator('link[rel=icon]').count() > 0, true);
+      assert.equal(await page.locator('meta[property="og:image"]').count() > 0, true);
       assert.equal(await page.locator('h1').count(), 1);
       if (route === '/components') {
         assert.equal(await page.locator('#main-navigation a[aria-current=page]').innerText(), '취급 부품');
@@ -122,8 +138,17 @@ try {
     assert.equal(mail, 'mailto:comdj@naver.com');
     await page.close();
   }
-  const response = await fetch(base + '/robots.txt');
-  assert.match(await response.text(), /Disallow: \//);
-  await writeFile('output/browser-results.json', JSON.stringify({ base, results }, null, 2));
-  console.log(`${results.length} route/viewport checks passed; menu, Escape, focus, 404, images, noindex and robots verified.`);
+  const robotsTxt = await (await fetch(base + '/robots.txt')).text();
+  const sitemap = await (await fetch(base + '/sitemap.xml')).text();
+  if (isPublic) {
+    assert.match(robotsTxt, /Allow: \//);
+    assert.ok(robotsTxt.includes(`Sitemap: ${base}/sitemap.xml`));
+    assert.equal(sitemap.match(/<loc>/g).length, 6);
+  } else {
+    assert.match(robotsTxt, /Disallow: \//);
+    assert.doesNotMatch(sitemap, /<loc>/);
+  }
+  for (const path of ['/icon.png', '/apple-icon.png', '/opengraph-image.png']) assert.equal((await fetch(base + path)).status, 200, path);
+  await writeFile('output/browser-results.json', JSON.stringify({ base, mode, results }, null, 2));
+  console.log(`${results.length} route/viewport checks passed (${mode}); menu, Escape, focus, 404, images, search settings, sitemap and icons verified.`);
 } finally { await browser.close(); }

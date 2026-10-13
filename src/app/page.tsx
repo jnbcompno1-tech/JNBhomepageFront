@@ -1,7 +1,9 @@
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ContactCTA, Services, Process, Portfolio, s } from '@/components/Site';
 import { company, supplyProducts, visibleProjects } from '@/data/site';
+export const metadata = pageMetadata('/', undefined, company.description);
 export default function Home() { return <>
   <section className={s.hero}><div className={s.container}>
     <div className={s.heroContent}><p className={s.eyebrow}>COMPONENT SOURCING · CHINA OEM / ODM</p><h1>{company.heroTitle}</h1><p className={s.lead}>{company.heroDescription}</p><div className={s.buttons}><Link className={s.button} href="/contact">부품·원가 상담하기 <span aria-hidden="true">↗</span></Link><Link className={s.outlineButton} href={visibleProjects.length ? '/portfolio' : '/services'}>{visibleProjects.length ? '공급 사례 보기' : '사업영역 보기'} <span aria-hidden="true">↗</span></Link></div><p className={s.heroFoot}>LCD · OLED · MOTOR · SENSOR</p></div>
