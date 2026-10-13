@@ -11,7 +11,7 @@ export default function ComponentSearch() {
   const [category, setCategory] = useState('전체');
   const results = findComponents(query, category);
   return <section className={s.section} id="component-search" aria-labelledby="component-search-title">
-    <div className={s.sectionHeading}><div><p className={s.eyebrow}>FIND YOUR COMPONENT</p><div className={s.componentHeading}><h2 id="component-search-title">주요 취급 부품</h2><p>필요한 부품을 검색해 보세요.<br/>품목에 제한 없이 부품 조달 상담을 받습니다.</p></div></div></div>
+    <div className={s.sectionHeading}><div><p className={s.eyebrow}>FIND YOUR COMPONENT</p><div className={s.componentHeading}><h2 id="component-search-title">주요 취급 부품</h2><p>필요한 부품을 검색해 보세요. 품목에 제한 없이 부품 조달 상담을 받습니다.</p></div></div></div>
     <div className={s.componentFilters}>
       <label htmlFor="component-query">부품명·종류 검색</label>
       <div className={s.componentInput}><input id="component-query" type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="예: LCD, 거리 센서, DC 모터, 케이블" autoComplete="off"/>{query && <button type="button" onClick={() => setQuery('')}>검색어 지우기</button>}</div>
