@@ -22,8 +22,8 @@ export const navigation = [
 export const supplyProducts = [
   { title: '디스플레이·태블릿', detail: 'LCD·OLED·터치 / 태블릿 개발·양산', image: '/images/portfolio/medical-equipment.webp', alt: '태블릿 위탁 개발·양산 관련 제품 사진', width: 235, height: 126 },
   { title: '모터', detail: '조향 모터·소형 DC 모터', image: '/images/sourcing-motor.webp', alt: 'JNB 취급 소형 DC 모터의 실물 사진', width: 732, height: 530 },
-  { title: '센서·전원 부품', detail: '광센서·배터리·어댑터', image: '/images/portfolio/coding-robot.webp', alt: '센서와 전원 부품을 공급한 교육용 코딩 제품의 구성도', width: 570, height: 379 },
-  { title: '케이블·충전기', detail: '전용 케이블·무선 충전기', image: '/images/portfolio/vehicle-accessories.webp', alt: '무선 충전기 개발·양산 관련 제품 사진', width: 220, height: 150 },
+  { title: '센서·전원 부품', detail: '광센서·배터리·어댑터', image: '/images/portfolio/coding-robot.webp', alt: '센서와 전원 부품을 공급한 교육용 코딩 로봇카 일러스트', width: 901, height: 483 },
+  { title: '케이블·충전기', detail: '전용 케이블·무선 충전기', image: '/images/portfolio/vehicle-accessories.webp', alt: '오토바이용 무선 충전기 제품 이미지', width: 309, height: 357 },
 ];
 export const services = [
   {
@@ -77,9 +77,9 @@ export const steps = [
   { title: '제조사 협의와 샘플 검토', text: '제조사와 사양·가격·공급 조건을 협의합니다. 대체 부품은 샘플 확인과 고객 승인 후 적용합니다.' },
   { title: '생산·납품과 후속 대응', text: '합의한 조건으로 생산·배송 일정을 조율합니다. 품질 문제가 생기면 제조사와 후속 대응을 협의합니다.' },
 ];
-export type Project = { id: string; title: string; category: string; client: string; summary: string; items: string[]; visible: boolean };
+export type Project = { id: string; title: string; category: string; client: string; summary: string; items: string[]; visible: boolean; images?: { src: string; alt: string }[] };
 // 사용자 제공 포트폴리오 Sheet1, F3:G35. 고객사는 익명 표기하며 견적·제안과 양산을 구분합니다.
-// 사진은 같은 엑셀의 삽입 이미지를 브랜드 글자·로고가 안 보이게 잘라 public/images/portfolio/{id}.webp에 둡니다.
+// 사진은 public/images/portfolio/{id}.webp에 둡니다. images를 지정하면 해당 이미지들을 나란히 보여줍니다.
 export const projects: Project[] = [
   {
     id: 'medical-equipment', title: '의료기기용 태블릿·부품 및 장비', category: 'ODM 양산 · 부품 소싱·공급',
@@ -102,11 +102,19 @@ export const projects: Project[] = [
   {
     id: 'coding-robot', title: '교육용 AI 코딩 제품 부품', category: '부품 소싱·공급',
     client: '교육용 AI 코딩 업체 B사', summary: '전방 조향 모터, 후방 DC 모터, 광센서와 전원 부품의 인증·양산 업무를 수행했습니다.', visible: true,
+    images: [
+      { src: '/images/portfolio/coding-robot.webp', alt: '투명 외형의 교육용 코딩 로봇카 측면 일러스트' },
+      { src: '/images/portfolio/coding-robot-2.webp', alt: '코딩 로봇카의 센서·표시등 배치 구성도' },
+    ],
     items: ['전방 조향 모터 양산', '후방 DC 모터 양산', '광센서 양산', '18650 배터리 인증·양산', '어댑터 인증·양산'],
   },
   {
     id: 'vehicle-accessories', title: '차량용 거치대·무선 충전기', category: 'ODM 양산 · 디자인·개발',
     client: '차량용 거치대 제작·판매 업체 C사', summary: '무선 충전기 개발·양산과 가공 부품, 케이스, 전용 케이블 제작 및 디자인 제안을 수행했습니다.', visible: true,
+    images: [
+      { src: '/images/portfolio/vehicle-accessories.webp', alt: '오토바이 핸들에 장착한 무선 충전기 이미지' },
+      { src: '/images/portfolio/vehicle-accessories-2.webp', alt: '스마트폰을 올린 오토바이용 무선 충전기 이미지' },
+    ],
     items: [
       '오토바이 무선 충전기 개발·양산',
       'SUS 430/420F CNC 가공',
